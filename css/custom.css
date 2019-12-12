@@ -1,0 +1,9 @@
+/* your styles go here */
+
+.hoverPoint:hover{
+    cursor: pointer;
+}
+
+.text-color-green{
+    color: #3aa18c;
+}
