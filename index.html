@@ -33,6 +33,7 @@
 
   </head>
   <body>
+
     <!-- Reference item-->
     <!-- navbar-->
     <header class="header">
@@ -130,6 +131,25 @@
         </div>
       </div>
     </section>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Email Sent Successfully</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>I'll get back to you shortly regarding your email. Thank you for your time!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <!-- Statistics-->
 <!--    <section id="statistics" data-dir="up" style="background: url(&quot;img/parallax.jpg&quot;);" class="statistics-section text-white parallax parallax">-->
@@ -380,11 +400,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 text-center text-lg-left">
-            <p class="social"><a href="#" class="external facebook wow fadeInUp"><i class="fa fa-facebook"></i></a><a href="#" data-wow-delay="0.2s" class="external instagram wow fadeInUp"><i class="fa fa-instagram"></i></a><a href="#" data-wow-delay="0.4s" class="external gplus wow fadeInUp"><i class="fa fa-google-plus"></i></a><a href="#" data-wow-delay="0.6s" class="email wow fadeInUp"><i class="fa fa-envelope"></i></a></p>
+            <p class="social align-content-center d-flex"><a href="https://www.facebook.com/colin.holcomb" target="_blank" class="external facebook wow fadeInUp"><i class="fa fa-facebook"></i></a><a href="https://www.linkedin.com/in/colin-marchbanks/" target="_blank" class="external linkedin wow fadeInUp"><i class="fa fa-linkedin"></i></a><a class="external github wow fadeInUp" href="https://github.com/colinmarchbanks" target="_blank"><img style="width: 45px; height: 45px" src="img/github_catWhite.png" alt=""></a><a href="mailto:marchbanks.colin@gmail.com" data-wow-delay="0.6s" class="email wow fadeInUp"><i class="fa fa-envelope"></i></a></p>
           </div>
           <!-- /.6-->
           <div class="col-md-6 text-center text-lg-right mt-4 mt-lg-0">
-            <p>© 2018 Colin Marchbanks. All rights reserved.</p>
+            <p>© 2019 Colin Marchbanks. All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -405,14 +425,6 @@
       })();
     </script>
     <script type="text/javascript">
-      // window.onload = function() {
-      //   document.getElementById('contact-form').addEventListener('submit', function(event) {
-      //     event.preventDefault();
-      //     // generate the contact number value
-      //     this.contact_number.value = Math.random() * 100000 | 0;
-      //     emailjs.sendForm('contact_service', 'contact_template', this);
-      //   });
-      // }
       $('#contact-form').on('submit', function(event) {
         event.preventDefault(); // prevent reload
 
@@ -427,7 +439,7 @@
           contentType: false, // auto-detection
           processData: false // no need to parse formData to string
         }).done(function() {
-          alert('Your mail is sent!');
+          $('#myModal').modal('toggle');
         }).fail(function(error) {
           alert('Oops... ' + JSON.stringify(error));
         });
