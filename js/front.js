@@ -196,7 +196,7 @@ $(function () {
     }, {
         offset: '90%'
     });
-    
+
     $('[data-animate-hover]').hover(function () {
         $(this).css({
             opacity: 1
@@ -308,5 +308,4 @@ function map() {
 
         }
     }
-
 }

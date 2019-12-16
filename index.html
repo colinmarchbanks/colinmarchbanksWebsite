@@ -29,6 +29,8 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
   </head>
   <body>
     <!-- Reference item-->
@@ -349,11 +351,9 @@
               <div class="messages"></div>
               <div class="controls">
                 <div class="row">
-                  <div class="col-md-6">
-                    <input type="text" name="name" placeholder="Your firstname *" required="required" class="form-control">
-                  </div>
-                  <div class="col-md-6">
-                    <input type="text" name="surname" placeholder="Your lastname *" required="required" class="form-control">
+                  <div class="col-md-12">
+                    <input type="hidden" name="contact_number">
+                    <input type="text" style="width: 100%!important;" name="from_name" placeholder="Your name *" required="required" class="form-control">
                   </div>
                   <div class="col-md-6">
                     <input type="text" name="email" placeholder="Your email *" required="required" class="form-control">
@@ -362,7 +362,7 @@
                     <input type="text" name="phone" placeholder="Your phone" class="form-control">
                   </div>
                   <div class="col-md-12">
-                    <textarea name="message" placeholder="Message for me *" rows="4" required="required" class="form-control"></textarea>
+                    <textarea name="message_html" placeholder="Message for me *" rows="4" required="required" class="form-control"></textarea>
                   </div>
                   <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-outline-primary">Send message</button>
@@ -384,7 +384,7 @@
           </div>
           <!-- /.6-->
           <div class="col-md-6 text-center text-lg-right mt-4 mt-lg-0">
-            <p>© 2018 Your name goes here. All rights reserved.</p>
+            <p>© 2018 Colin Marchbanks. All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -398,5 +398,40 @@
     <script src="vendor/jquery.counterup/jquery.counterup.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.js"> </script>
     <script src="js/front.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("user_2c8B2X1ZwlOvY9b8BWtrZ");
+      })();
+    </script>
+    <script type="text/javascript">
+      // window.onload = function() {
+      //   document.getElementById('contact-form').addEventListener('submit', function(event) {
+      //     event.preventDefault();
+      //     // generate the contact number value
+      //     this.contact_number.value = Math.random() * 100000 | 0;
+      //     emailjs.sendForm('contact_service', 'contact_template', this);
+      //   });
+      // }
+      $('#contact-form').on('submit', function(event) {
+        event.preventDefault(); // prevent reload
+
+        var formData = new FormData(this);
+        formData.append('service_id', 'marchbanks_colin_gmail_com');
+        formData.append('template_id', 'template_JWqhgutU');
+        formData.append('user_id', 'user_2c8B2X1ZwlOvY9b8BWtrZ');
+
+        $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+          type: 'POST',
+          data: formData,
+          contentType: false, // auto-detection
+          processData: false // no need to parse formData to string
+        }).done(function() {
+          alert('Your mail is sent!');
+        }).fail(function(error) {
+          alert('Oops... ' + JSON.stringify(error));
+        });
+      });
+    </script>
   </body>
 </html>
